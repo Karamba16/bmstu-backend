@@ -1,0 +1,35 @@
+{% extends 'bases.html' %}
+{% block title %}Список студентов{% endblock %}
+
+{% block content %}
+
+<div class="album">
+    <div class="container">
+        <div class="row">
+            <form method="GET" action="{% url 'main' %}">
+                <div class="search-bar">
+                    <input type="text" name="q" id="search-input" placeholder="Поиск" value="{{search_value}}">
+                    <button type="submit" id="search-button">Искать</button>
+                </div>
+            </form>
+
+            {% for info in filtered_data %}
+            <div class="col">
+                <div class="card" data-url="https://google.com">
+                    <img src="{{ info.image_url }}" alt="{{ info.type }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ info.name }}</h5>
+                        <h4 class="truncate-text">
+                          <p class="card-text">{{ info.description }}</p>
+                        </h4>
+                    </div>
+                    <div class="card-button">
+                        <a href="{% url 'detailed' info.id %}" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

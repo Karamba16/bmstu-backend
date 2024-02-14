@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Список заявок{% endblock %}
+
+{% block content %}
+<ul>
+    {{ data.current_date }}
+    {% for order in data.orders %}
+       <li><a href="{% url 'order.url' order.id %}">{{ order.title }}</a> </li>
+    {% empty %}
+        <li>Список пуст</li>
+    {% endfor %}
+</ul>
+{% endblock %}
