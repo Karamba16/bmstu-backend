@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <title>Список услуг</title>
+</head>
+
+<body>
+    <div class="search-container">
+        <form action="/cards" method="get" class="filter-form">
+            <label for="filter">Фильтр по наименованию:</label>
+            <div class="search-input">
+                <input type="text" id="filter" name="Name" value="{{.Name}}" placeholder="Введите наименование">
+                <button type="submit"><img src="/image/search-icon.png" alt="Search"></button>
+            </div>
+        </form>
+    </div>
+
+    {{range $key, $value := .Cards}}
+        <a href="/cards/{{.UUID}}" class="service-card">
+            <img src="{{$value.ImageURL}}" alt="{{$value.Name}}">
+            <div class="service-info">
+                <h2>{{$value.Name}}</h2>
+                <p>Тип:{{$value.Type}}</p>
+            </div>
+            <form action="/cards" method="post">
+                <input type="hidden" name="delete" value="{{.UUID}}">
+                <input type="submit" value="Удалить" class="button-7" style="width: 50%;">
+            </form>
+        </a>
+    {{end}}
+</body>
+
+</html>

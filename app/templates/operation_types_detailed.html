@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ filtered_data.last_name }}{{ data.student_id }}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/detailed.css' %}">
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <img src="{% static filtered_data.image_url %}" alt="{{ filtered_data.last_name }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ filtered_data.last_name }} {{ filtered_data.first_name }}</h5>
+                    <p class="card-text">{{ filtered_data.description }}</p>
+                     <p class="card-text">{{ filtered_data.status }}</p>
+
+                <div class="card-button">
+                    <a class="btn btn-back" onclick="history.back(); return false;">Назад</a>
+                    <a class="btn btn-back-all" href="{% url 'main' %}">Вернуться ко всем услугам</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Список студентов{% endblock %}
+
+{% block content %}
+
+<div class="album">
+    <div class="container">
+        <div class="row">
+            <form method="GET" action="{% url 'main' %}">
+                <div class="search-bar">
+                    <input type="text" name="q" id="search-input" placeholder="Поиск" value="{{search_value}}">
+                    <button type="submit" id="search-button">Искать</button>
+                </div>
+            </form>
+        
+            {% for info in filtered_data %}
+            <div class="col">
+                <div class="card" data-url="https://google.com">
+                    <img src="{{ info.image_url }}" alt="{{ info.type }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ info.last_name }}</h5>
+                        <h4 class="truncate-text">
+                          <p class="card-text">{{ info.description }}</p>
+                        </h4>
+                    </div>
+                     <form method="POST" action="{% url 'update_operations_page' info.student_id %}">
+                        {% csrf_token %}
+                        <button class="delete-button">🗑️</button>
+                    </form>
+                    <div class="card-button">
+                        <a href="{% url 'detailed' info.student_id %}" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
