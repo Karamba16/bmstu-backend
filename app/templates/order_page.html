@@ -1,0 +1,73 @@
+{% extends 'home_page.html' %}
+
+{% load static %}
+
+{% block title %}
+   Рассчёт
+{% endblock %}
+
+
+{% block content %}
+
+        <div class="content-wrapper">
+
+            <div class="cards-wrapper">
+
+                <div class="top">
+
+                    <h2>Приказ №{{ order.id }}</h2>
+
+                    <a href="/">
+                        Назад
+                    </a>
+
+                </div>
+
+                <div class="bottom-container">
+
+                    <div class="order-info-wrapper">
+
+                        <span>Дата создания №{{ order.date_created }}</span>
+
+                    </div>
+
+                    <h2>Студенты</h2>
+
+                    <div class="students-container">
+
+                        {% for student in students %}
+
+                            <div class="card-wrapper">
+
+                                <div class="preview">
+                                    <img src="http://127.0.0.1:9000/images/{{ student.image }}">
+                                </div>
+
+                                <div class="card-content">
+
+                                    <div class="content-top">
+
+                                        <h3 class="title">{{ student.name }}</h3>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="bottom-buttons-container">
+                        <a href="/orders/{{ order.id }}/delete/">Очистить</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+{% endblock %}

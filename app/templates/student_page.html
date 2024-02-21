@@ -1,0 +1,48 @@
+{% extends 'base_page.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{ student.name }}
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="content-wrapper">
+
+        <div class="student-details-wrapper">
+
+            <a class="return-link" href="/">Назад</a>
+
+            <div class="left">
+
+                <img src="http://127.0.0.1:9000/images/{{ student.image }}">
+
+            </div>
+
+            <div class="right">
+
+                <div class="student-info-container">
+
+                    <h2>{{ student.name }}</h2>
+
+                    <br>
+
+                    <span>Факультет: {{ student.faculty }}</span>
+
+                    <br />
+
+                    <span>Группа: {{ student.group }}</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
